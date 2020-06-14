@@ -1,0 +1,17 @@
+version: '3'
+services: 
+  web:
+    image: nginx:1.13
+    volumes:
+      - ./web:/usr/share/nginx/html
+    ports:
+      - 8081:80
+  ml:
+    image: python:3
+    #build: ml
+    volumes:
+      - ./ml:/ml
+    working_dir: /ml
+    command: bash ./ml.py
+    ports:
+      - 8080:8080
